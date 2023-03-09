@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Weather App</title>
+  <link rel="stylesheet" type="text/css" href="/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Teko&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+</head>
+
+<body>
+
+  <div class="background">
+    <div class="container1">
+      <!-- <p id="date">WED | OCT 23 | 10.49</p> -->
+    </div>
+
+    <h1 class="head__text">Weather App </h1>
+    <div class="container">
+      <form class="form_search" id="form_search" action="/weather" method="get">
+        <input type="text" name="city" placeholder="Enter city name" />
+        <button type="submit">Get Weather</button>
+      </form>
+      ` <% if (error) { %>
+        <p class="error">
+          <%= error %>
+        </p>
+        <% } else if (weather) { %>
+          <div class="card">
+            <div>
+              <%
+           const days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
+const months = ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+let currentTime = new Date();
+const getCurrentDay = () =>{
+    let day = days[currentTime.getDay()];
+    return day;
+    
+}
+
+const getCurrentTime = ()=>{
+    var month = currentTime.getMonth();
+    var day = currentTime.getDate();
+    var year = currentTime.getFullYear();
+    var hours = currentTime.getHours();
+    var mins = currentTime.getMinutes();
+
+    let periods = "AM";
+    if(hours>11){
+        periods = "PM";
+        if(hours>12) hours -=12;
+    }
+    if(mins<10){
+        mins = "0"+mins;
+    }
+
+
+    return `${months[month]} ${day}|${year} |${hours}:${mins}${periods}`;   
+
+};
+getCurrentDay();
+getCurrentTime();
+              %>
+             <p id="dateTime"> </p>   
+            </div>
+            <!-- Add your weather data here -->
+            <p class="main__temp ">
+              <!-- <i class="fas fa-thermometer-half"></i> -->
+              <!-- <i class="fa-solid fa-temperature-three-quarters"></i> -->
+              <%=weather.main.temp%>&deg;C
+            </p>
+            <p class="main__icon">
+              <!-- <i class="fas fa-cloud"></i> -->
+              <%=weather.weather[0].main%>
+            </p>
+            <!-- <p>
+   <img src="<%= imageURL  %>">
+
+            
+</p> -->
+
+            <p class="country ">
+              <i class="fas fa-map-marker-alt"></i>
+              <%=weather.name%>,<%=weather.sys.country%>
+              <br>
+            </p>
+              <span class="dateTT"><%= getCurrentTime(); %></span> 
+
+        
+            <img class="icon_image" src="<%= imageURL  %>">
+
+            <p class="min_max">
+
+              <span class="font"> <i class="fa-solid fa-temperature-low"></i>min<%=weather.main.temp_min %>&deg;C</span>
+              <br><span class="font"> <i class="fa-solid fa-temperature-high"></i>max<%=weather.main.temp_max %>
+                  &deg;C</span>
+            </p>
+            <p class="title_name">@sumit 2023</p>
+
+          </div>
+          <% } %>
+    </div>
+  </div>
+  <script src="main.js"></script>
+  <script>
+    const datet = new Date();
+    var tt = datet.getDate();
+  </script>
+</body>
+
+</html>
