@@ -58,7 +58,7 @@ const getCurrentTime = ()=>{
     }
 
 
-    return `${months[month]} ${day}|${year} |${hours}:${mins}${periods}`;   
+    return `${months[month]} ${day}|${year} `;   
 
 };
 getCurrentDay();
@@ -87,14 +87,14 @@ getCurrentTime();
               <%=weather.name%>,<%=weather.sys.country%>
               <br>
             </p>
-              <span class="dateTT"><%= getCurrentTime(); %></span> 
+              <span class="dateTT"><%= getCurrentTime() + getCurrentDay(); %></span> 
 
         
             <img class="icon_image" src="<%= imageURL  %>">
 
             <p class="min_max">
 
-              <span class="font"> <i class="fa-solid fa-temperature-low"></i>min<%=weather.main.temp_min %>&deg;C</span>
+              <span class="font"> <i class="fa-solid fa-temperature-low"></i>min<%=weather.main.temp_min%>&deg;C</span>
               <br><span class="font"> <i class="fa-solid fa-temperature-high"></i>max<%=weather.main.temp_max %>
                   &deg;C</span>
             </p>
