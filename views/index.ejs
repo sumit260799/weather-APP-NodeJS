@@ -45,18 +45,6 @@ const getCurrentTime = ()=>{
     var month = currentTime.getMonth();
     var day = currentTime.getDate();
     var year = currentTime.getFullYear();
-    var hours = currentTime.getHours();
-    var mins = currentTime.getMinutes();
-
-    let periods = "AM";
-    if(hours>11){
-        periods = "PM";
-        if(hours>12) hours -=12;
-    }
-    if(mins<10){
-        mins = "0"+mins;
-    }
-
 
     return `${months[month]} ${day}|${year} `;   
 
